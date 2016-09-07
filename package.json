@@ -1,6 +1,6 @@
 {
   "name": "cornerstone-event-components",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "main": "''",
   "scripts": {
@@ -32,10 +32,10 @@
   },
   "dependencies": {
     "alertifyjs": "^1.7.1",
+    "base64it": "^1.1.0",
     "classnames": "^2.2.5",
     "events": "^1.1.1",
     "flux": "^2.1.1",
-    "js-base64": "^2.1.9",
     "lodash": "^4.13.1",
     "object-assign": "^4.1.0",
     "react": "^15.2.1",

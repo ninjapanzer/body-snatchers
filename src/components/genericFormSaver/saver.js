@@ -1,6 +1,6 @@
 import React from 'react'
 import Zepto from 'zeptojs'
-import Base64 from 'js-base64'
+import Base64 from 'base64it'
 
 import Alertify from '../../alertifyMultiple.js'
 
@@ -29,7 +29,7 @@ export default React.createClass({
     var data = this.serializeForm()
     var self = this
     var dataString = JSON.stringify(data, null, 2)
-    Zepto.get(this.props.formElement.action, {payload: Base64.Base64.encode(dataString)}, function(response){
+    Zepto.get(this.props.formElement.action, {payload: Base64.strictEncode(dataString)}, function(response){
       var data = response[0]
       Alertify(data)
       self.dispatchSavedEvent(data)
