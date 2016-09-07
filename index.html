@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script src="../node_modules/moment/min/moment.min.js"></script>
+    <style>
+      .bordered {
+        margin: 1em;
+        padding: 0.25em;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+<body>
+  <div class='bordered'>
+    <input class="eventDateHelper" value="01/01/2018 2:46 PM" data-endpoint='/saveThings/index.json' data-dateformat="MM/DD/YYYY" data-timeformat="h:mm a"/>
+  </div>
+  <div class='bordered'>
+    <form action="butt" method="POST" class="serializableForm">
+      <input name="[thing]butt" type="text" placeholder="wow"/>
+      <input type="submit" value="Save"/>
+    </form>
+  </div>
+  <div class='bordered'>
+    <form action="butt" method="POST" class="serializableForm">
+      <input name="[thing]butt" type="text" placeholder="wow"/>
+      <button type="submit" value="Save"><span>HEYYYYYY</span></button>
+    </form>
+  </div>
+  <script id="scriptContainer" src='../commons.js'></script>
+  <script id="scriptContainer" src='../dates.component.js'></script>
+  <script id="scriptContainer" src='../forms.component.js'></script>
+</body>
+</html>
