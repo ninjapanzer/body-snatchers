@@ -111,8 +111,7 @@ webpackJsonp([1],{
 	    e.preventDefault();
 	    var data = this.serializeForm();
 	    var self = this;
-	    var dataString = JSON.stringify(data, null, 2);
-	    _zeptojs2.default.get(this.props.formElement.action, { payload: _base64it2.default.strictEncode(dataString) }, function (response) {
+	    _zeptojs2.default.get(this.props.formElement.action, { payload: _base64it2.default.strictEncode(data) }, function (response) {
 	      var data = response[0];
 	      (0, _alertifyMultiple2.default)(data);
 	      self.dispatchSavedEvent(data);

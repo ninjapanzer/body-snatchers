@@ -28,8 +28,7 @@ export default React.createClass({
     e.preventDefault()
     var data = this.serializeForm()
     var self = this
-    var dataString = JSON.stringify(data, null, 2)
-    Zepto.get(this.props.formElement.action, {payload: Base64.strictEncode(dataString)}, function(response){
+    Zepto.get(this.props.formElement.action, {payload: Base64.strictEncode(data)}, function(response){
       var data = response[0]
       Alertify(data)
       self.dispatchSavedEvent(data)
