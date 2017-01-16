@@ -25,8 +25,94 @@
       <button type="submit" value="Save"><span>HEYYYYYY</span></button>
     </form>
   </div>
+
+  <div class="bordered">
+    <p>
+      Clicking the anchor tag below will show and hide a sequence of anchor tags.<br>
+      Tags will cycle from 'Ready', to 'Set', to 'Go' and then back again.
+    </p>
+    <!-- AJAX Anchor add/remove div -->
+    <div class="addRemoveLinks">
+      <a href="index.json" data-method="GET" class="ajaxAnchor readyButton">Ready</a>
+      <a href="index.json" data-method="GET" class="ajaxAnchor setButton hidden">Set</a>
+      <a href="index.json" data-method="GET" class="ajaxAnchor goButton hidden">Go</a>
+    </div>
+  </div>
   <script id="scriptContainer" src='../commons.js'></script>
   <script id="scriptContainer" src='../dates.component.js'></script>
   <script id="scriptContainer" src='../forms.component.js'></script>
+  <script id="scriptContainer" src='../ajaxAnchor.component.js'></script>
+
+  <!-- Script for adding and removing AJAX Anchors -->
+  <script>
+    // capture the container and all anchors within it
+    var containers = document.querySelectorAll('.addRemoveLinks')
+    for(var i = 0; i < containers.length; i++){
+      var container = containers[i]
+      var anchors = container.querySelectorAll('a:not([data-reactroot])')
+      var reactAnchors = container.querySelectorAll('a[data-reactroot]')
+      console.log("Anchors captured:", reactAnchors)
+      var ready = anchors[0]
+      var set = anchors[1]
+      var go = anchors[2]
+      // Each anchor will require its own event listeners
+      // setup event listeners for 'Ready' anchor
+      ready.addEventListener('clicked', function(e){
+        console.log("current target:", e.currentTarget, "class names of current target:", e.detail.target.className)
+        var clickedClasses = e.detail.target.className.split(' ')
+        var isReadyBtn = clickedClasses.indexOf('readyButton') >= 0
+        // if 'Ready' anchor is clicked, hide 'Go' anchor and show 'Ready' anchor
+        console.log('Hiding Ready anchor and showing Set anchor')
+        if (isReadyBtn) {
+          clickedClasses.push('hidden')
+          e.detail.target.className = clickedClasses.join(' ')
+          // show next button in sequence
+          var setButton = container.querySelector('a[data-reactroot].setButton')
+          var setButtonClasses = setButton.className.split(' ')
+          var indexOfHidden = setButtonClasses.indexOf('hidden')
+          setButtonClasses.splice(indexOfHidden, 1)
+          setButton.className = setButtonClasses.join(' ')
+        }
+      })
+
+      // setup event listeners for 'Remove' anchor
+      set.addEventListener('clicked', function(e){
+        console.log("current target:", e.currentTarget, "class names of current target:", e.detail.target.className)
+        var clickedClasses = e.detail.target.className.split(' ')
+        var isSetBtn = clickedClasses.indexOf('setButton') >= 0
+
+        // if 'Set' anchor is clicked, hide 'Ready' anchor and show 'Set' anchor
+        console.log('Hiding Set anchor and showing Go anchor')
+        if (isSetBtn) {
+          clickedClasses.push('hidden')
+          e.detail.target.className = clickedClasses.join(' ')
+          var goButton = container.querySelector('a[data-reactroot].goButton')
+          var goButtonClasses = goButton.className.split(' ')
+          var indexOfHidden = goButtonClasses.indexOf('hidden')
+          goButtonClasses.splice(indexOfHidden, 1)
+          goButton.className = goButtonClasses.join(' ')
+        }
+      })
+
+      // setup event listeners for 'Remove' anchor
+      go.addEventListener('clicked', function(e){
+        console.log("current target:", e.currentTarget, "class names of current target:", e.detail.target.className)
+        var clickedClasses = e.detail.target.className.split(' ')
+        var isGoBtn = clickedClasses.indexOf('goButton') >= 0
+
+        // if 'Go' anchor is clicked, hide 'Go' anchor and show 'Ready' anchor
+        console.log('Hiding Go anchor and showing Ready anchor')
+        if (isGoBtn) {
+          clickedClasses.push('hidden')
+          e.detail.target.className = clickedClasses.join(' ')
+          var readyButton = container.querySelector('a[data-reactroot].readyButton')
+          var readyButtonClasses = readyButton.className.split(' ')
+          var indexOfHidden = readyButtonClasses.indexOf('hidden')
+          readyButtonClasses.splice(indexOfHidden, 1)
+          readyButton.className = readyButtonClasses.join(' ')
+        }
+      })
+    }
+  </script>
 </body>
 </html>

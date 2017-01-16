@@ -5,7 +5,8 @@ module.exports = {
   context: __dirname + '/src',
   entry: {
     dates: './dates.js',
-    forms: './forms.js'
+    forms: './forms.js',
+    ajaxAnchor: './ajaxAnchor.js'
     //b: "./b",
     //c: ["./c", "./d"]
   },
